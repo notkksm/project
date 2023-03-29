@@ -1,0 +1,14 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"
+     data-sly-call="${clientlib.css @ categories='aemProject'}"/>
+<div data-sly-use.link="com.aem.geeks.core.models.Navigation">
+    <a class="itemLink" href="${link.sponsor.link}"><img src="${link.sponsor.image}"></a>
+    <sly data-sly-list.navItem="${link.items}">
+        <a class="navLink" href="${navItem.link}">${navItem.title}</a>
+    </sly>
+    <a class="itemLink" href="${link.logo.link}"><img src="${link.logo.image}"></a>
+</div>
+
+
+
+
+

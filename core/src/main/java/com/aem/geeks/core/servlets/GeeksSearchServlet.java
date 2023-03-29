@@ -42,7 +42,6 @@ public class GeeksSearchServlet extends SlingAllMethodsServlet {
             int pageNumber = Integer.parseInt(req.getRequestParameter("pageNumber").getString())-1;
             int resultPerPage = Integer.parseInt(req.getRequestParameter("resultPerPage").getString());
             int startResult=pageNumber*resultPerPage;
-            searchResult=searchService.searchResult(searchtext,startResult,resultPerPage);
         } catch (Exception e) {
             LOG.info("\n ERROR {} ", e.getMessage());
         }

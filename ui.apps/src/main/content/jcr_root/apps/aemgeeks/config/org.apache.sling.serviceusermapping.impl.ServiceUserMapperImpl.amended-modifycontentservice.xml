@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
     jcr:primaryType="sling:OsgiConfig"
-    getCountries="[de,in,fr]"
-    getLiveData="{Boolean}true"
-    getRunMode="author"
-    getServiceCount="{Long}12"
-    serviceName="AEM GEEKS DEMO"/>
+    service.ranking="0"
+    user.mapping="[aemgeeks.core:modifycontentservice=user-data-writer]"/>

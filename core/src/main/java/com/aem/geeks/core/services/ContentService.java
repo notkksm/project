@@ -6,6 +6,6 @@ import org.apache.sling.api.resource.PersistenceException;
 
 import java.util.Iterator;
 
-public interface DemoService {
+public interface ContentService {
     public Iterator<Page> getPages() throws LoginException, PersistenceException;
 }

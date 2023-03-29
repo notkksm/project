@@ -2,14 +2,8 @@ package com.aem.geeks.core.services.impl;
 
 import com.aem.geeks.core.services.DemoService;
 import com.aem.geeks.core.services.DemoServiceB;
-import com.aem.geeks.core.services.MultiService;
-import com.aem.geeks.core.utils.ResolverUtil;
+import com.aem.geeks.core.services.ContentService;
 import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import org.apache.sling.api.resource.LoginException;
-import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ResourceResolverFactory;
-import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,11 +20,8 @@ public class DemoServiceBImpl implements DemoServiceB {
 
     /*--------Start Tutorial #30--------*/
     @Reference(target = "(component.name=com.aem.geeks.core.services.impl.MultiServiceBImpl)")
-    MultiService multiService;
+    ContentService contentService;
 
-    public String getNameWithReference(){
-        return "Response coming from  "+multiService.getName();
-    }
     /*--------End Tutorial #30--------*/
     /*--------Start Tutorial #29--------*/
     @Reference
@@ -49,6 +40,11 @@ public class DemoServiceBImpl implements DemoServiceB {
         } catch (Exception e) {
             LOG.info("\n  Exception {} ",e.getMessage());
         }
+        return null;
+    }
+
+    @Override
+    public String getNameWithReference() {
         return null;
     }
     /*--------End Tutorial #29--------*/

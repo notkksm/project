@@ -66,6 +66,12 @@
                             <filter>true</filter>
                             <target>/apps/aemgeeks-packages/content/install</target>
                         </embedded>
+                        <embedded>
+                            <groupId>org.cid15.aem.groovy.console</groupId>
+                            <artifactId>aem-groovy-console-all</artifactId>
+                            <type>zip</type>
+                            <target>/apps/gap-cloud-packages/groovyconsole/install</target>
+                        </embedded>
                         
                     </embeddeds>
                     <subPackages>
@@ -192,6 +198,12 @@
             <groupId>com.adobe.cq</groupId>
             <artifactId>core.wcm.components.all</artifactId>
             <type>zip</type>
-        </dependency>        
+        </dependency>
+        <dependency>
+            <groupId>org.cid15.aem.groovy.console</groupId>
+            <artifactId>aem-groovy-console-all</artifactId>
+            <version>17.0.0</version>
+            <type>zip</type>
+        </dependency>
     </dependencies>
 </project>

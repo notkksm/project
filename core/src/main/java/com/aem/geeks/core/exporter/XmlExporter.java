@@ -13,8 +13,8 @@ import java.io.StringWriter;
 import java.util.Map;
 
 @Component(service = ModelExporter.class)
-public class GeeksXmlExporter implements ModelExporter {
-    private static final Logger LOG = LoggerFactory.getLogger(GeeksXmlExporter.class);
+public class XmlExporter implements ModelExporter {
+    private static final Logger LOG = LoggerFactory.getLogger(XmlExporter.class);
     @Override
     public boolean isSupported(Class<?> aClass) {
         return true;

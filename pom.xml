@@ -36,7 +36,7 @@
 
     <properties>
         <aem.host>localhost</aem.host>
-        <aem.port>4502</aem.port>
+        <aem.port>4507</aem.port>
         <aem.publish.host>localhost</aem.publish.host>
         <aem.publish.port>4503</aem.publish.port>
         <sling.user>admin</sling.user>
@@ -604,6 +604,11 @@ Bundle-DocURL:
             </dependency>
             <dependency>
                 <groupId>org.apache.sling</groupId>
+                <artifactId>org.apache.sling.query</artifactId>
+                <version>3.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.sling</groupId>
                 <artifactId>org.apache.sling.servlets.annotations</artifactId>
                 <version>1.2.4</version>
                 <scope>provided</scope>
@@ -649,7 +654,12 @@ Bundle-DocURL:
                 <version>2.1</version>
                 <scope>provided</scope>
             </dependency>
-
+            <dependency>
+                <groupId>de.valtech.aecu</groupId>
+                <artifactId>aecu.complete</artifactId>
+                <version>LATEST</version>
+                <type>zip</type>
+            </dependency>
             <dependency>
                 <groupId>javax.annotation</groupId>
                 <artifactId>javax.annotation-api</artifactId>

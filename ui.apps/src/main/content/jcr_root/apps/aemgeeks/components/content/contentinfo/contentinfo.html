@@ -1,0 +1,7 @@
+<div data-sly-use.service="com.aem.geeks.core.models.Content"></div>
+<div data-sly-list.item="${service.pagesList}">
+    <a class="navLink" href="${item.path}.html">${item.title} </a>
+</div>
+<div data-sly-list.item="${service.updatedList}">
+    <a class="navLink" href="${item.path}.html">${item.title} </a>
+</div>

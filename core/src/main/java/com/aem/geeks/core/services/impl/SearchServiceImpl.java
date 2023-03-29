@@ -8,6 +8,7 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
+import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.json.JSONArray;
@@ -18,10 +19,9 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component(service = SearchService.class, immediate = true)
 public class SearchServiceImpl implements SearchService{
@@ -30,63 +30,35 @@ public class SearchServiceImpl implements SearchService{
 
     @Reference
     QueryBuilder queryBuilder;
+    @Reference(target="(serviceName=getcontentservice)")
+    com.aem.geeks.core.services.ResourceResolverFactory oSGiConfig;
 
     @Reference
     ResourceResolverFactory resourceResolverFactory;
-
-    @Activate
-    public void activate(){
-        LOG.info("\n ----ACTIVATE METHOD----");
+    public Map getMap(){
+        Map predicateMap = new HashMap();
+        predicateMap.put("path", "/content");
+        predicateMap.put("property", "jcr:content/cq:template");
+        predicateMap.put("property.1_value", "/conf/editable-templates/settings/wcm/templates/project-page");
+        predicateMap.put("property.2_value", "/conf/we-retail/settings/wcm/templates/redirect-page");
+        predicateMap.put("property.3_value", "/conf/we-retail/settings/wcm/templates/hero-page");
+        return predicateMap;
     }
-
-    public Map<String,String> createTextSearchQuery(String searchText,int startResult,int resultPerPage){
-        Map<String,String> queryMap=new HashMap<>();
-        queryMap.put("path","/content/we-retail");
-        queryMap.put("type","cq:Page");
-        queryMap.put("fulltext",searchText);
-        queryMap.put("p.offset",Long.toString(startResult));
-        queryMap.put("p.limit",Long.toString(resultPerPage));
-        return queryMap;
-    }
-
     @Override
-    public JSONObject searchResult(String searchText,int startResult,int resultPerPage){
-        LOG.info("\n ----SEARCH RESULT--------");
-        JSONObject searchResult=new JSONObject();
-        try {
-            ResourceResolver resourceResolver = ResolverUtil.newResolver(resourceResolverFactory);
-            final Session session = resourceResolver.adaptTo(Session.class);
-            Query query = queryBuilder.createQuery(PredicateGroup.create(createTextSearchQuery(searchText,startResult,resultPerPage)), session);
+    public List<Map<String,String>> searchResult() throws LoginException, RepositoryException {
+        List<Map<String,String>>resultMap=new ArrayList<>();
+        ResourceResolver resourceResolver = oSGiConfig.getServiceUser();
+        Session session = resourceResolver.adaptTo(Session.class);
 
-
-            SearchResult result = query.getResult();
-
-            int perPageResults = result.getHits().size();
-            long totalResults = result.getTotalMatches();
-            long startingResult = result.getStartIndex();
-            double totalPages = Math.ceil((double) totalResults / (double) resultPerPage);
-
-            searchResult.put("perpageresult",perPageResults);
-            searchResult.put("totalresults",totalResults);
-            searchResult.put("startingresult",startingResult);
-            searchResult.put("pages",totalPages);
-
-
-            List<Hit> hits =result.getHits();
-            JSONArray resultArray=new JSONArray();
-            for(Hit hit: hits){
-                Page page=hit.getResource().adaptTo(Page.class);
-                JSONObject resultObject=new JSONObject();
-                resultObject.put("title",page.getTitle());
-                resultObject.put("path",page.getPath());
-                resultArray.put(resultObject);
-                LOG.info("\n Page {} ",page.getPath());
-            }
-            searchResult.put("results",resultArray);
-
-        }catch (Exception e){
-            LOG.info("\n ----ERROR -----{} ",e.getMessage());
+        Query query = queryBuilder.createQuery(PredicateGroup.create(getMap()), session);
+        SearchResult result = query.getResult();
+        List <Hit> list = result.getHits();
+        for (Hit hit : list) {
+            Map<String,String> map=new HashMap<>();
+            map.put("title",hit.getTitle());
+            map.put("path",hit.getPath());
+            resultMap.add(map);
         }
-        return searchResult;
+        return resultMap;
     }
 }
