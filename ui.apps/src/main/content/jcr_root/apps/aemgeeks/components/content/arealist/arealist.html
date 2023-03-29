@@ -1,0 +1,19 @@
+<div data-sly-use.figures="com.aem.geeks.core.models.Area">
+    <div data-sly-list.item="${figures.figures}">
+        ---------------Figure-----------------
+        <p> type : <b>${item.type} </b></p>
+        <sly data-sly-test="${item.squareside}">
+            <p> side: : <b>${item.squareside}</b> </p>
+        </sly>
+        <sly data-sly-test="${item.rectside}">
+            <p> side : <b>${item.rectside}</b> </p>
+        </sly>
+        <sly data-sly-test="${item.rectsecondside}">
+            <p> side : <b>${item.rectsecondside}</b> </p>
+        </sly>
+        <sly data-sly-test="${item.radius}">
+            <p> radius : <b>${item.radius}</b> </p>
+        </sly>
+        <p> area : <b>${item.area}</b> </p>
+    </div>
+</div>
