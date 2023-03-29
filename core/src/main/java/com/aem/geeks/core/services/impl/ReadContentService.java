@@ -15,14 +15,13 @@ import org.osgi.service.component.propertytypes.ServiceRanking;
 import java.util.Iterator;
 
 @Component(service = ContentService.class, immediate = true)
-@ServiceRanking(1001)
 public class ReadContentService implements ContentService {
 
     @Reference(target="(serviceName=getcontentservice)")
     ResourceResolverFactory oSGiConfig;
 
     @Override
-    public Iterator<Page> getPages() throws LoginException, PersistenceException {
+    public Iterator<Page> getPages() {
         ResourceResolver resourceResolver = oSGiConfig.getServiceUser();
         Resource pageResource = resourceResolver.getResource("/content/we-retail/us/en");
         return $(pageResource).children("cq:Page").map(Page.class).iterator();

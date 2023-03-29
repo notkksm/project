@@ -21,11 +21,11 @@ public class ContentModel implements com.aem.geeks.core.models.Content {
     ContentService updateContentService;
 
     @Override
-    public Iterator<Page> getPagesList() throws PersistenceException, LoginException {
+    public Iterator<Page> getPagesList(){
         return readContentService.getPages();
     }
     @Override
-    public Iterator<Page> getUpdatedList() throws PersistenceException, LoginException {
+    public Iterator<Page> getUpdatedList(){
         return updateContentService.getPages();
     }
 }

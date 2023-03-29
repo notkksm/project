@@ -8,7 +8,6 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.*;
-
 import java.util.Collections;
 import java.util.Map;
 
@@ -17,14 +16,11 @@ import java.util.Map;
 public class ResourceResolverFactoryImpl implements ResourceResolverFactory {
     @Reference
     org.apache.sling.api.resource.ResourceResolverFactory resourceResolverFactory;
-
     private String serviceName;
-
     @Activate
     protected void activate(ServiceConfig serviceConfig) {
         serviceName = serviceConfig.serviceName();
     }
-
     @Override
     public ResourceResolver getServiceUser() {
         ResourceResolver resourceResolver = null;

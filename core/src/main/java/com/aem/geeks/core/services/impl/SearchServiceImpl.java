@@ -9,8 +9,10 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.api.resource.LoginException;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
+import org.apache.sling.query.SlingQuery;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.osgi.service.component.annotations.Activate;
@@ -19,22 +21,20 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import java.util.*;
 
+import static org.apache.sling.query.SlingQuery.$;
+
 @Component(service = SearchService.class, immediate = true)
 public class SearchServiceImpl implements SearchService{
-
-    private static final Logger LOG= LoggerFactory.getLogger(SearchServiceImpl.class);
-
     @Reference
     QueryBuilder queryBuilder;
     @Reference(target="(serviceName=getcontentservice)")
     com.aem.geeks.core.services.ResourceResolverFactory oSGiConfig;
 
-    @Reference
-    ResourceResolverFactory resourceResolverFactory;
     public Map getMap(){
         Map predicateMap = new HashMap();
         predicateMap.put("path", "/content");

@@ -8,6 +8,6 @@ import java.util.Iterator;
 import java.util.List;
 
 public interface Content {
-    public Iterator<Page> getPagesList() throws PersistenceException, LoginException;
-    public Iterator<Page> getUpdatedList() throws PersistenceException, LoginException;
+    public Iterator<Page> getPagesList();
+    public Iterator<Page> getUpdatedList();
 }

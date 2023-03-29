@@ -19,12 +19,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Exporter(name = "jackson", extensions = "json", selector = "f-json")
-
 @Model(
         adaptables = SlingHttpServletRequest.class,
         adapters = Search.class,
-        defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL
+        defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL,
+        resourceType = { "aemgeeks/components/content/search" }
 )
 
 public class SearchImpl implements Search {
