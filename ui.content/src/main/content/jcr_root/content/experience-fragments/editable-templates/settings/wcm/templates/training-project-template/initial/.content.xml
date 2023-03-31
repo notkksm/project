@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:template="/conf/aemProject/editable-templates/settings/wcm/templates/training-project-template"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="training project template"
+        sling:resourceType="aemProject/components/content/page"
+        title="hello"/>
+</jcr:root>

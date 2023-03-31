@@ -7,5 +7,5 @@
     ranking="{Long}100">
     <jcr:content
         jcr:primaryType="cq:PageContent"
-        sling:resourceType="aemgeeks/components/structure/home"/>
+        sling:resourceType="/apps/aemgeeks/components/structure/basepage"/>
 </jcr:root>
