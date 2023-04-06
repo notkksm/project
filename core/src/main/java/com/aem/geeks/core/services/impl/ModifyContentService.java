@@ -9,6 +9,8 @@ import org.apache.sling.api.resource.*;
 import org.apache.sling.query.SlingQuery;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Iterator;
 
@@ -19,12 +21,12 @@ public class ModifyContentService implements ContentService {
 
     @Reference(target="(serviceName=modifycontentservice)")
     ResourceResolverFactory oSGiConfig;
+    private static final Logger LOG= LoggerFactory.getLogger(ContentService.class);
 
     @Override
     public Iterator<Page> getPages() {
-        ResourceResolver resourceResolver = oSGiConfig.getServiceUser();
         Iterator<Page> pagesList = null;
-        try {
+        try(ResourceResolver resourceResolver = oSGiConfig.getServiceUser()) {
             Resource pageResource = resourceResolver.getResource("/content/we-retail/us/en");
             Iterator<Resource> pages = pageResource.listChildren();
             while (pages.hasNext()) {
@@ -40,7 +42,7 @@ public class ModifyContentService implements ContentService {
             Page page = pageManager.getPage("/content/we-retail/us/en");
             pagesList = page.listChildren();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            LOG.info("\n Exception {} ",e.getMessage());
         }
         return pagesList;
     }
