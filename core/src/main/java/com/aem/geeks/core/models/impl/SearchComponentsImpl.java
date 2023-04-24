@@ -49,7 +49,7 @@ public class SearchComponentsImpl implements SearchComponents {
             }
 
         } catch (Exception e) {
-            LOG.info("\n Exception {} ", e.getMessage());
+            LOG.error("\n Exception {} ", e.getMessage());
         }
         return componentTitle;
     }
