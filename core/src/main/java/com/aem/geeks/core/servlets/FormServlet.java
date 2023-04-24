@@ -23,7 +23,8 @@ import static org.apache.sling.api.servlets.ServletResolverConstants.*;
                 "sling.servlet.resourceTypes="+ "aemgeeks/components/structure/basepage",
                 SLING_SERVLET_PATHS+"="+"/bin/submitform",
                 "sling.servlet.selectors=" + "project",
-                "sling.servlet.extensions"+"="+"html"
+                "sling.servlet.extensions"+"="+"html",
+                "sling.servlet.suffix"+"="+"suffix"
         })
 public class FormServlet extends SlingAllMethodsServlet {
 

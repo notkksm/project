@@ -67,7 +67,7 @@ public class SearchPageServiceImpl implements SearchPageService {
                 }
             }
         } catch (Exception e) {
-            LOG.error("\n Exception {} ",e.getMessage());
+            LOG.info("\n Exception {} ",e.getMessage());
         }
         finally {
             resourceResolver.close();

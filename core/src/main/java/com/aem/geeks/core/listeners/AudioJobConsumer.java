@@ -28,10 +28,10 @@ public class AudioJobConsumer implements JobConsumer {
             String resourceType = (String) job.getProperty("resourceType");
             String event = (String) job.getProperty("event");
             if (resourceType.equals("acs-commons/components/content/audio")) {
-                LOG.info("\n Job for audio component : ", event);
+                LOG.info("\n Job for audio component : "+ event);
                 return JobResult.OK;
             } else {
-                LOG.info("\n Error in Job (not audio component)", event);
+                LOG.info("\n Error in Job (not audio component)"+ event);
                 return JobResult.FAILED;
             }
         }
