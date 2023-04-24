@@ -38,7 +38,7 @@ public class SearchPagesImpl implements SearchPages {
     @Override
     public List<Page> getList() throws RepositoryException, LoginException {
         List<String> list = new ArrayList<>();
-        list.add("/conf/we-retail/settings/wcm/templates/redirect-page");
+        list.add("/conf/we-retail/settings/wcm/templates/experience-page");
         list.add("/conf/we-retail/settings/wcm/templates/hero-page");
         List<Page> pages = searchService.getPagesByTemplate("/content/we-retail", list);
         return pages;

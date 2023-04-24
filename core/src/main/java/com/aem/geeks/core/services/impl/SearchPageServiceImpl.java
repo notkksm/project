@@ -45,14 +45,15 @@ public class SearchPageServiceImpl implements SearchPageService {
 
         List<Map<String,String>>resultMap=new ArrayList<>();
         List<Page> pages = new ArrayList<>();
+        ResourceResolver resourceResolver=null;
         try {
-            ResourceResolver resourceResolver = oSGiConfig.getServiceUser();
+            resourceResolver = oSGiConfig.getServiceUser();
             PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
             Session session = resourceResolver.adaptTo(Session.class);
             Map predicateMap = new HashMap();
             int i = 1;
             predicateMap.put("path", path);
-            predicateMap.put("property", "jcr:content/cq:template");
+            predicateMap.put("property", "cq:template");
             for (String template : templates) {
                 predicateMap.put("property." + i + "_value", template);
                 i++;
@@ -67,6 +68,9 @@ public class SearchPageServiceImpl implements SearchPageService {
             }
         } catch (Exception e) {
             LOG.info("\n Exception {} ",e.getMessage());
+        }
+        finally {
+            resourceResolver.close();
         }
         return pages;
     }

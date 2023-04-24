@@ -5,21 +5,18 @@ import org.osgi.service.metatype.annotations.AttributeType;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
 @ObjectClassDefinition(
-        name = "AEM Geeks - Scheduler Configuration",
-        description = "Sling scheduler configuration"
+        name = "Tag Scheduler"
 )
 public @interface SchedulerConfiguration {
 
     @AttributeDefinition(
             name = "Scheduler name",
-            description = "Name of the scheduler",
             type = AttributeType.STRING)
-    public String schedulerName() default "Custom Sling Scheduler Configuration";
+    public String schedulerName() default "Tas Scheduler";
 
     @AttributeDefinition(
             name = "Cron Expression",
-            description = "Cron expression used by the scheduler",
             type = AttributeType.STRING)
-    public String cronExpression() default "0/20 * * * * ?"; // runs every 10 seconds
+    public String cronExpression() default "0/20 * * * * ?";
 }
 

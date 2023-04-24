@@ -35,9 +35,9 @@ public class AssetWorkflowProcess implements WorkflowProcess {
     ResourceResolverFactory oSGiConfig;
 
     public String getTagTitle(){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY-MM-DD_hh-mm");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm");
         LocalDateTime now = LocalDateTime.now();
-        return "aemgeeks:dam-assets/"+dtf.format(now);
+        return "aemgeeks:dam-assets/" + dtf.format(now);
     }
 
     @Override

@@ -17,7 +17,6 @@ package com.aem.geeks.core.listeners;
 
 import com.aem.geeks.core.utils.ResolverUtil;
 import org.apache.sling.api.SlingConstants;
-import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
@@ -25,23 +24,22 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventConstants;
-import org.osgi.service.event.EventHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.jcr.Node;
 
-@Component(service = EventHandler.class,
+@Component(service = org.osgi.service.event.EventHandler.class,
            immediate = true,
            property = {
                    EventConstants.EVENT_TOPIC + "=org/apache/sling/api/resource/Resource/ADDED",
                    EventConstants.EVENT_TOPIC + "=org/apache/sling/api/resource/Resource/CHANGED",
                    EventConstants.EVENT_TOPIC + "=org/apache/sling/api/resource/Resource/REMOVED",
-                   EventConstants.EVENT_FILTER +"=(path=/content/aemgeeks/us/en/author/*)"
+                   EventConstants.EVENT_FILTER +"=(path=/content/aemgeeks_training/en/home-page)"
            })
-public class OSGiEventHandler implements EventHandler {
+public class EventHandler implements org.osgi.service.event.EventHandler {
 
-    private static final Logger LOG = LoggerFactory.getLogger(OSGiEventHandler.class);
+    private static final Logger LOG = LoggerFactory.getLogger(EventHandler.class);
 
     @Reference
     ResourceResolverFactory resourceResolverFactory;

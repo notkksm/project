@@ -24,17 +24,17 @@ public class PageEventHandler implements EventHandler {
     private static final Logger LOG = LoggerFactory.getLogger(PageEventHandler.class);
 
     public void handleEvent(final Event event)  {
-        try {
+       /* try {
             Iterator<PageModification> pageInfo=PageEvent.fromEvent(event).getModifications();
             while (pageInfo.hasNext()){
                 PageModification pageModification=pageInfo.next();
-                LOG.info("\n Type :  {},  Page : {}",pageModification.getType(),pageModification.getPath());
+               // LOG.info("\n Type :  {},  Page : {}",pageModification.getType(),pageModification.getPath());
                 pageModification.getEventProperties().forEach((k,v)->LOG.info("\n key : {}, Value : {} " , k , v));
             }
 
         }catch (Exception e){
-            LOG.info("\n Error while Activating/Deactivating - {} " , e.getMessage());
-        }
+            //LOG.info("\n Error while Activating/Deactivating - {} " , e.getMessage());
+        }*/
     }
 }
 

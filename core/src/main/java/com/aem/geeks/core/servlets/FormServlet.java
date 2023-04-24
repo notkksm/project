@@ -44,8 +44,8 @@ public class FormServlet extends SlingAllMethodsServlet {
     }
     @Override
     protected void doPost(SlingHttpServletRequest req, SlingHttpServletResponse resp) throws IOException {
-        resp.getWriter().write("name");
-
+        String name = req.getParameter("name");
+        resp.getWriter().write(name);
     }
 
 }
